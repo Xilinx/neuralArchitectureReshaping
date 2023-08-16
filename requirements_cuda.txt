@@ -1,0 +1,43 @@
+#
+# This file is licensed under the MIT License.
+# SPDX-License-Identifier: MIT
+# 
+# (c) Copyright 2023 Advanced Micro Devices, Inc.
+
+numpy
+tqdm
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.10.0+cu111 
+# -f https://download.pytorch.org/whl/torch_stable.html
+# torch==1.10.0+cu102 
+# -f https://download.pytorch.org/whl/torch_stable.html
+# torchvision==0.11.0+cu102 
+fast-ctc-decode==0.3.2
+brevitas==0.8.0
+cloudpickle==2.2.1
+json_tricks==3.16.1
+pysam==0.19.1
+requests==2.25.1
+ont-fast5-api==3.3.0
+Cython==0.29.26
+setuptools==59.5.0
+ont-remora==1.1.1 --no-build-isolation
+ont-koi==0.1.4
+ont-seqdist-cuda111==0.0.3
+pod5-format==0.0.41
+pod5-format-tools==0.0.41
+python-dateutil==2.8.2
+mappy==2.24
+toml==0.10.2
+parasail
+pandas
+koi-cuda111==0.0.5
+prettytable
+pytorch_lightning
+scikit-learn
+networkx==3.0
+cupy-cuda111
+crf-beam==0.0.1a0
+scipy
+scikit-metrics==0.1.0
+filelock==3.10.0

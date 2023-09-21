@@ -15,6 +15,8 @@ QABAS and SkipClip are two novel machine learning-based techniques that are spec
 
 In addition, RUBICON provides support for Pruning, which is a popular model compression technique where we discard network connections that are unimportant to neural network performance. We integrate Training and Basecalling modules from the official ONT research project. For both Pruning and Training modules we provide the capability to use knowledge distillation (KD) for faster convergence and to increase the accuracy of the target neural network.
 
+## Installation procedure
+bonito v0.6.2
 
 ## Installation procedure
 ```bash
@@ -25,8 +27,6 @@ $ source venv3/bin/activate
 $ python3.8 -m pip install --upgrade pip
 $ pip install -r requirements_rocm.txt or pip install -r requirements_cuda.txt # depending upon AMD or NVIDIA GPU. 
 # AMD modules are tested using ROCM 5.1.1 and NVIDIA modules with CUDA 11.4
-$ cd ~/rubicon/tools/ont
-$ python setup.py develop 
 $ cd ~/rubicon/tools/nni
 $ python setup.py develop 
 $ cd ~/rubicon/tools/nn_Meter
@@ -39,7 +39,7 @@ $ cd rubicon
 Download official ONT dataset (12.2 GiB)
 
 ``` bash
-$ rubicon download --training # or bonito download --training will download ONT dataset 
+$  bonito download --training will download ONT dataset 
 ```
 
 ## Interface
@@ -47,7 +47,6 @@ $ rubicon download --training # or bonito download --training will download ONT 
  - `rubicon prune` - prune a model.
  - `rubicon skiptrim` - remove skip connection using knowledge distillation.
  - `rubicon train` - train a model.
- - `rubicon basecalling` - perform basecalling.
 
 
 ## Quantization-Aware Basecalling Neural Architecture Search (QABAS)

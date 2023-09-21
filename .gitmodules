@@ -1,9 +1,6 @@
 [submodule "rubicon/tools/nni"]
 	path = rubicon/tools/nni
 	url = https://github.com/singagan/nni.git
-[submodule "rubicon/tools/ont"]
-	path = rubicon/tools/ont
-	url = https://github.com/singagan/bonito_update
 [submodule "rubicon/tools/nn_Meter"]
 	path = rubicon/tools/nn_Meter
 	url = https://github.com/singagan/nn-Meter.git

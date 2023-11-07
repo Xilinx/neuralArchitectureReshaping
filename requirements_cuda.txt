@@ -19,7 +19,7 @@ brevitas==0.8.0
 cloudpickle==2.2.1
 json_tricks==3.16.1
 pysam==0.19.1
-requests==2.30.0
+requests==2.31.0
 ont-fast5-api==3.3.0
 Cython==0.29.26
 setuptools==59.5.0

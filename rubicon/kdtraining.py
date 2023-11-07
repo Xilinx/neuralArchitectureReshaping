@@ -12,9 +12,9 @@ from functools import partial
 from time import perf_counter
 from collections import OrderedDict
 from datetime import datetime
-from rubicon.tools.ont.bonito.io import CSVLogger
-from rubicon.tools.ont.bonito.schedule import linear_warmup_cosine_decay
-from rubicon.tools.ont.bonito.util  import accuracy, decode_ref, permute, concat, match_names
+from bonito.io import CSVLogger
+from bonito.schedule import linear_warmup_cosine_decay
+from bonito.util  import accuracy, decode_ref, permute, concat, match_names
 import rubicon
 import torch.nn.functional as F
 import torch

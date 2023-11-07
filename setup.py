@@ -28,9 +28,8 @@ package_name = "%s" % __pkg_name__
 setup(
     name=package_name,
     version=__version__,
-    packages=["bonito", "nni"],
+    packages=["nni"],
     package_dir={
-        "bonito": "./rubicon/tools/ont",
         "nni": "./rubicon/tools/nni",
     },
     include_package_data=True,

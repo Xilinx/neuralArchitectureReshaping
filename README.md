@@ -9,37 +9,36 @@
 
 
 # What is RUBICON?
- RUBICON is a framework to develop hardware-optimized basecallers. It consists of five modules: QABAS, SkipClip, Pruning, Training, and Basecalling. 
+ RUBICON is a framework to develop hardware-optimized basecallers. It consists of four modules: QABAS, SkipClip, Pruning with Knowledge Distillation, and Training with Knowledge Distillation. 
 
 QABAS and SkipClip are two novel machine learning-based techniques that are specifically designed for basecalling. QABAS  is the first quantization-aware basecalling neural architecture search framework to specialize the basecalling neural network architecture for a given hardware acceleration platform while jointly exploring and finding the best bit-width precision for each neural network layer. SkipClip is the first technique to remove the skip connections present in modern basecallers to greatly reduce resource and storage requirements without any loss in basecalling accuracy.  
 
-In addition, RUBICON provides support for Pruning, which is a popular model compression technique where we discard network connections that are unimportant to neural network performance. We integrate Training and Basecalling modules from the official ONT research project. For both Pruning and Training modules we provide the capability to use knowledge distillation (KD) for faster convergence and to increase the accuracy of the target neural network.
-
-## Installation procedure
-bonito v0.6.2
+In addition, RUBICON provides support for Pruning, which is a popular model compression technique where we discard network connections that are unimportant to neural network performance. We integrate Training module from the official ONT research project. For both Pruning and Training modules we provide the capability to use knowledge distillation (KD) for faster convergence and to increase the accuracy of the target neural network.
 
 ## Installation procedure
 ```bash
-$ git clone --recurse-submodules  <repo_path> # 
-$ cd rubicon
-$ python3 -m venv venv3 # or conda create --name rubicon python=3.8
+$ git clone --recurse-submodules  https://github.com/Xilinx/neuralArchitectureReshaping # 
+$ cd neuralArchitectureReshaping
+$ python3.8 -m venv venv3 # or conda create --name rubicon python=3.8
 $ source venv3/bin/activate
-$ python3.8 -m pip install --upgrade pip
+$ python3.8 -m pip install pip==23.2.1
 $ pip install -r requirements_rocm.txt or pip install -r requirements_cuda.txt # depending upon AMD or NVIDIA GPU. 
 # AMD modules are tested using ROCM 5.1.1 and NVIDIA modules with CUDA 11.4
-$ cd ~/rubicon/tools/nni
+$ cd rubicon/tools/nni
 $ python setup.py develop 
-$ cd ~/rubicon/tools/nn_Meter
+$ cd ../nn_Meter
 $ python setup.py develop 
-$ cd ~/rubicon
+$ cd ~/neuralArchitectureReshaping
 $ python setup.py develop 
 $ cd rubicon
 ```
+## Additional dependencies
+- torch==2.0.0+cu118
+- bonito==0.6.2
 
 Download official ONT dataset (12.2 GiB)
-
 ``` bash
-$  bonito download --training will download ONT dataset 
+$  bonito download --training #will download ONT dataset 
 ```
 
 ## Interface
@@ -236,6 +235,7 @@ rubicon
 RUBICON is designed using official [ONT](https://github.com/nanoporetech/bonito) project. 
 
 Please also consider citing:
+- Refer [ONT](https://github.com/nanoporetech/bonito) for basecalling.
 - Refer [Brevitas](https://github.com/Xilinx/brevitas) for quantization.
 - Refer [NNI](https://github.com/microsoft/nni) for NAS.
 - Refer [nn-meter](https://github.com/microsoft/nn-Meter) to generate latency predictor for NAS. 

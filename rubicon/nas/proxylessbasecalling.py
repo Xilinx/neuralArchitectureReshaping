@@ -25,8 +25,8 @@ import torch.nn.functional as F
 import bonito
 from rubicon.tools.nni.nni.retiarii.oneshot.interface import BaseOneShotTrainer
 from rubicon.tools.nni.nni.retiarii.oneshot.pytorch.utils import AverageMeterGroup, replace_layer_choice, replace_input_choice, to_device
-from rubicon.tools.ont.bonito.schedule import linear_warmup_cosine_decay
-from rubicon.tools.ont.bonito.util import accuracy, decode_ref, permute, concat, match_names
+from bonito.schedule import linear_warmup_cosine_decay
+from bonito.util import accuracy, decode_ref, permute, concat, match_names
 
 import rubicon
 
@@ -133,7 +133,7 @@ class HardwareLatencyEstimator:
        
         if(self.predictor_name=="aie_lut"):
             import yaml
-            with open("data/latency_quant_aie.yaml", "r") as stream:
+            with open("../data/latency_quant_aie.yaml", "r") as stream:
                 try:
                     
                     self.block_latency_table=yaml.safe_load(stream)

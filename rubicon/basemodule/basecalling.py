@@ -16,20 +16,20 @@ from datetime import timedelta
 from itertools import islice as take
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-from rubicon.tools.ont.bonito.ctc.basecall  import basecall as basecallctc
-from rubicon.tools.ont.bonito.crf.basecall  import basecall as basecallcrf
+from bonito.ctc.basecall  import basecall as basecallctc
+from bonito.crf.basecall  import basecall as basecallcrf
 
-from rubicon.tools.ont.bonito.aligner import align_map, Aligner
+from bonito.aligner import align_map, Aligner
 
-from rubicon.tools.ont.bonito.io import CTCWriter, Writer, biofmt
-from rubicon.tools.ont.bonito.mod_util import call_mods, load_mods_model
+from bonito.io import CTCWriter, Writer, biofmt
+from bonito.mod_util import call_mods, load_mods_model
 # from rubicon.ioold import CTCWriter, Writer
 # from rubicon.util import load_model_prune_for_kd
-from rubicon.tools.ont.bonito.util import load_model,column_to_set
+from bonito.util import load_model,column_to_set
 
 # from rubicon.fast5 import get_reads, read_chunks
-from rubicon.tools.ont.bonito.reader import read_chunks, Reader
-from rubicon.tools.ont.bonito.multiprocessing import process_cancel
+from bonito.reader import read_chunks, Reader
+from bonito.multiprocessing import process_cancel
 from rubicon.util import load_model_prune_for_basecall,load_model_kd_basecall
 import subprocess
 from prettytable import PrettyTable

@@ -16,8 +16,8 @@ from zipfile import ZipFile
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import tarfile
 from rubicon.util import __data__, __models__,__dataorg__
-from rubicon.tools.ont.bonito.cli.convert import main as convert
-from rubicon.tools.ont.bonito.cli.convert import argparser as cargparser
+from bonito.cli.convert import main as convert
+from bonito.cli.convert import argparser as cargparser
 
 import requests
 from tqdm import tqdm

@@ -21,8 +21,8 @@ import logging
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from rubicon.tools.ont.bonito.schedule import linear_warmup_cosine_decay
-from rubicon.tools.ont.bonito.util import accuracy, decode_ref, permute, concat, match_names
+from bonito.schedule import linear_warmup_cosine_decay
+from bonito.util import accuracy, decode_ref, permute, concat, match_names
 import rubicon
 import sys
 import os

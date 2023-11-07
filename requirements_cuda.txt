@@ -3,41 +3,35 @@
 # SPDX-License-Identifier: MIT
 # 
 # (c) Copyright 2023 Advanced Micro Devices, Inc.
-
-numpy
-tqdm
--f https://download.pytorch.org/whl/torch_stable.html
-torch==1.10.0+cu111 
-# -f https://download.pytorch.org/whl/torch_stable.html
-# torch==1.10.0+cu102 
-# -f https://download.pytorch.org/whl/torch_stable.html
-# torchvision==0.11.0+cu102 
+scipy==1.9.3
+scikit-learn==1.3.0
 fast-ctc-decode==0.3.2
-brevitas==0.8.0
-cloudpickle==2.2.1
-json_tricks==3.16.1
-pysam==0.19.1
-requests==2.25.1
-ont-fast5-api==3.3.0
-Cython==0.29.26
-setuptools==59.5.0
-ont-remora==1.1.1 --no-build-isolation
 ont-koi==0.1.4
 ont-seqdist-cuda111==0.0.3
 pod5-format==0.0.41
 pod5-format-tools==0.0.41
+koi-cuda111==0.0.5
+crf-beam==0.0.1a0
+wheel==0.41.1
+numpy==1.20.3
+tqdm==4.66.1
+brevitas==0.8.0
+cloudpickle==2.2.1
+json_tricks==3.16.1
+pysam==0.19.1
+requests==2.30.0
+ont-fast5-api==3.3.0
+Cython==0.29.26
+setuptools==59.5.0
+ont-remora==1.1.1  --global-option="--no-build-isolation"
 python-dateutil==2.8.2
 mappy==2.24
 toml==0.10.2
 parasail
-pandas
-koi-cuda111==0.0.5
-prettytable
+pandas==1.4.4
+prettytable==3.8.0
 pytorch_lightning
-scikit-learn
 networkx==3.0
 cupy-cuda111
-crf-beam==0.0.1a0
-scipy
 scikit-metrics==0.1.0
 filelock==3.10.0

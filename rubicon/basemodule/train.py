@@ -14,8 +14,8 @@ from pathlib import Path
 from importlib import import_module
 import shutil
 from rubicon.data import load_numpy_shuf,load_numpy_full 
-from rubicon.tools.ont.bonito.data import load_script
-from rubicon.tools.ont.bonito.util import load_symbol, init,load_model
+from bonito.data import load_script
+from bonito.util import load_symbol, init,load_model
 from rubicon.util import load_model_prune,load_model_prune_for_basecall
 
 from rubicon.training import load_state, Trainer

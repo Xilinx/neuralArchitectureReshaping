@@ -21,9 +21,9 @@ import torch.nn as nn
 from os import system
 from bonito.data import load_numpy
 from rubicon.data import load_numpy_shuf,load_numpy_full
-from rubicon.tools.ont.bonito.data import load_script
+from bonito.data import load_script
 from rubicon.util import __models__, default_data
-from rubicon.tools.ont.bonito.util import load_symbol, init
+from bonito.util import load_symbol, init
 from rubicon.training import load_state, Trainer
 import json
 import toml
@@ -79,11 +79,11 @@ def main(args):
     
     config_file = args.config
     if not os.path.exists(config_file):
-        print("[error] %s does not" % config_file)
+        print("[error] %s does not exits, please specify using --config" % config_file)
         exit(1)
     config = toml.load(config_file)
     if not args.nas:
-        _logger.warning("Please speficy which type of NAS using --nas argument")
+        _logger.warning("Please specify which type of NAS using --nas argument")
         exit(1)
     _logger.info("[loading model]")
     if args.applied_hardware=="aie_lut":
@@ -126,14 +126,14 @@ def main(args):
     elif args.chunks:
         _logger.info("Not full dataset training with shuffling")
         train_loader_kwargs, valid_loader_kwargs = load_numpy_shuf(
-            args.chunks,args.valid_chunks, args.directory
+            args.chunks, args.valid_chunks, args.directory
         )
     else:
         _logger.warning("Please define the training data correctly")
         exit(1)
 
     loader_kwargs = {
-        "batch_size": args.batch, "num_workers": 1, "pin_memory": True
+        "batch_size": args.batch, "num_workers": 8, "pin_memory": True
     }
     train_loader = DataLoader(**loader_kwargs, **train_loader_kwargs)
     valid_loader = DataLoader(**loader_kwargs, **valid_loader_kwargs)
@@ -263,7 +263,7 @@ def argparser():
     parser.add_argument("save_directory")
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--config', default="models/configs/config.toml")
-    parser.add_argument("--directory", type=Path,default="tools/ont/bonito/data/dna_r9.4.1")
+    parser.add_argument("--directory", type=Path,default="../rubicon/data/dna_r9.4.1")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--seed", default=25, type=int)
     parser.add_argument("--epochs", default=5, type=int)

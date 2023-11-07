@@ -22,7 +22,7 @@ pysam==0.19.1
 requests==2.30.0
 ont-fast5-api==3.3.0
 Cython==0.29.26
-setuptools==59.5.0
+setuptools==65.5.1
 ont-remora==1.1.1  --global-option="--no-build-isolation"
 python-dateutil==2.8.2
 mappy==2.24

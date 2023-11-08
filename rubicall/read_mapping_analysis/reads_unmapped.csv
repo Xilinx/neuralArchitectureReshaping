@@ -1,0 +1,10 @@
+reads_unmapped,causalcall,crf-fast,bonito,rubicon
+acinetobacter,33,5,15,15
+haemophilus_haemolyticus_M1C132_1,8565,2468,1991,1819
+klebsiella_pneumoniae_INF032,4,0,7,1
+klebsiella_pneumoniae_INF042,42,2,26,10
+klebsiella_pneumoniae_KSB2_1B,205,29,103,64
+klebsiella_pneumoniae_NUH29,224,18,122,65
+serratia_marcescens_17,189,27,75,46
+staphylococcus_aureus_CAS38_02_fast5s,9,0,0,0
+stenotrophomonas_maltophilia_17_G_0092_Kos,64,13,51,30

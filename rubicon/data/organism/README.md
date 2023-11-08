@@ -1,0 +1,1 @@
+Evaluated specie reads can be downloaded using `rubicon download --organism`

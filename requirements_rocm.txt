@@ -1,0 +1,17 @@
+#
+# This file is licensed under the MIT License.
+# SPDX-License-Identifier: MIT
+# 
+# (c) Copyright 2023 Advanced Micro Devices, Inc.
+
+-f  https://download.pytorch.org/whl/rocm5.1.1
+torch   
+-f  https://download.pytorch.org/whl/rocm5.1.1
+torchvision
+-f  https://download.pytorch.org/whl/rocm5.1.1
+torchaudio
+json_tricks
+prettytable
+pytorch_lightning
+colorama
+cloudpickle

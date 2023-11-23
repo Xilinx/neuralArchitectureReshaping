@@ -25,22 +25,22 @@ We use various tools to process and analyze the data we generate using each tool
 * [BBMap v39.03](https://sourceforge.net/projects/bbmap/)
 * [SeqKit  v2.5.1](https://github.com/shenwei356/seqkit)
 
-We suggest using conda to install these tools with their specified versions as almost all of them are included in the conda repository.
+We suggest using Conda to install these tools with their specified versions, as almost all of them are included in the Conda repository.
 
 Please make sure that all of these tools are in your `PATH`
 
 
 ## Datasets
-Make sure to download ONT official training dataset using:
+Make sure to download the ONT official training dataset using the following:
 
 ``` bash
 $ rubicon download --training # will download ONT dataset 
 ```
-Evaluated specie reads can be downloaded using `rubicon download --organism` . The datasets will be downloaed under `~/rubicon/rubicon/data/organism`
+Evaluated species reads can be downloaded using `rubicon download --organism`. The datasets will be downloaded under `~/rubicon/rubicon/data/organism`
 
 Evaluated reference files can be downloaded from https://bridges.monash.edu/articles/dataset/Reference_genomes/10198815
 
-For the human genome, we download reads from https://labs.epi2me.io/gm24385_2020.11/, while the reference genome is available at https://github.com/marbl/HG002
+For the human genome, we download reads from https://labs.epi2me.io/gm24385_2020.11/, while the reference genome is available at https://github.com/marbl/HG002.
 
 We also provide references under `reproducibleEvaluation/reference_files`
 
@@ -106,7 +106,7 @@ rubicon qabas path_to_store_search_data -f --chunks=30000 --batch 64 --no-amp --
 ```
 
 ## SkipClip with Knowledge Distillation
-Once `rubiconqabas-mp` model is trained then apply SkipClip to achieve 'RUBICALL-MP'
+Once `rubiconqabas-mp` model is trained, then apply SkipClip to achieve 'RUBICALL-MP'
 
 ```bash
 rubicon skipclip path_to_store_rubicall-mp  --pretrained path_to_trained_rubiconqabas-mp -f --full --batch 64 --no-amp --epoch 100  --temp 2 --alpha 0.9 --type rubiconqabas-mp
@@ -120,9 +120,9 @@ rubicon skipclip path_to_store_rubicall-mp  --pretrained path_to_trained_rubicon
 
 `--alpha` alpha for KD (default=0.9).
 
-`--type` perform SkipClip on QABAS generated model.
+`--type` performs SkipClip on QABAS generated model.
 
-`--skip_stride` change stride at which skip connection should be removed.
+`--skip_stride` changes the stride at which the skip connection should be removed.
 
 ```bash
 rubicon skipclip path_to_store_rubicall-mp  --pretrained reproducibleEvaluation/models/rubiconqabas/ -f --full --batch 64 --no-amp --epoch 100  --temp 2 --alpha 0.9 --type rubiconqabas
@@ -142,16 +142,16 @@ $ bash download_reads_rubicall.sh
 $ bash download_reads_sacall.sh
 ```
 
-Or perform basecalling on a set of raw reads. Make sure models are available under `reproducibleEvaluation/models` and evaluated organisms unders `../../data/organism`
+Or perform basecalling on a set of raw reads. Make sure models are available under `reproducibleEvaluation/models` and evaluated organisms under `../../data/organism`
 
 ```bash
 cd reproducibleEvaluation/basecalled_reads
 python run_basecalling.py specie_dir model_dir modeltype
 ```
 
-`specie_dir` is path to specie reads (Can be downloaded using `rubicon download --organism`) 
+`specie_dir` is the path to specie reads (Can be downloaded using `rubicon download --organism`) 
 
-`model_dir` is path to specific model, which are under reproducibleEvaluation/models
+`model_dir` is the path to a specific model, which are under reproducibleEvaluation/models
 
 `modeltype` depending upon the model
 
@@ -171,7 +171,7 @@ python run_basecalling.py specie_dir model_dir modeltype
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`staticquant` for model after statically quant models
 
-To run all the models that we evaluate simply run the below command. 
+To run all the models that we evaluate, simply run the command below. 
 
 ```bash
 cd reproducibleEvaluation
@@ -190,7 +190,7 @@ cd reproducibleEvaluation/basecalling_accuracy_analysis
 Note we do not perform nanopolishing in `~/reproducibleEvaluation/basecalling_accuracy_analysis/basecalling_comparison/analysis_scripts/analysis.sh`
 
 Make sure reference files are in the same folder from where you execute the script as reference$i.fasta. 
-Where $i is the name of the specie (e.g., reference_Acinetobacter_pittii_16-377-0801.fasta)
+Where $i is the name of the species (e.g., reference_Acinetobacter_pittii_16-377-0801.fasta)
 
 ``` bash
 cd reproducibleEvaluation/basecalling_accuracy_analysis
@@ -198,13 +198,13 @@ $ bash download_reference.sh
 ```
 
 Appropriate reference files are under `reproducibleEvaluation/reference_files`
-Human reference genome is available at https://github.com/marbl/HG002
+The human reference genome v0.7 is available at https://github.com/marbl/HG002
 
 ```bash
-#run the analysis using the below script
+#run the analysis using the script below
 python reproducibleEvaluation/basecalling_accuracy_analysis/run_eval_pipeline.py path_to_basecalled_reads
 ```
-To analyze the results run the following following command. Pass the path to generated _read.tsv file.
+To analyze the results, run the following command. Pass the path to generated _read.tsv file.
 
 ```bash
 python3 analysis_scripts/get_median_identity.py <generated_basecalled_reads.tsv>
@@ -216,7 +216,7 @@ We construct de novo assemblies from the basecalled reads and calculate the stat
 ```bash
 cd reproducibleEvaluation/denovo_assembly/
 bash download_analysis_data.sh #download necessary data
-#Run assembly for each basecaller. E.g., below we run for bonito. Same way run for rubicall, crf-fast, causalcall.
+#Run assembly for each basecaller. E.g., below, we run for bonito. In the same way, run for rubicall, crf-fast, causalcall.
 cd reproducibleEvaluation/denovo_assembly/bonito
 ./run_assembly.sh 
 ```
@@ -229,7 +229,7 @@ cd  reproducibleEvaluation/denovo_assembly/analysis
 ./run.sh
 ```
 
-Similarly for human genome follow the below instructions. Please make sure run_dnadiff and run_quast, points to proper location:
+Similarly, for the human genome, follow the below instructions. Please make sure run_dnadiff and run_quast, points to proper location:
 
 ```bash
 cd reproducibleEvaluation/denovo_assembly/human_analysis
@@ -241,18 +241,18 @@ It outputs the result at the end to the standard output.
 
 
 ## Downstream Analysis: Read Mapping
-We basecall the raw electrical signals into reads using each of the subject basecallers. We map the resulting read set to its reference genome of the same species using the state-of-the-art read mapper, minimap2. We use the default parameter values for mapping ONT reads using the preset parameter -x map-ont. We use the stats tool from the SAMtools library to obtain four key statistics on the quality of read mapping results, the total number of mismatches, the total number of mapped bases, the total number of mapped reads, and the total number of unmapped reads.
+We basecall the raw electrical signals into reads using each of the subject basecallers. We map the resulting read set to its reference genome of the same species using the state-of-the-art read mapper, minimap2. We use the default parameter values for mapping ONT reads using the preset parameter -x map-ont. We use the stats tool from the SAMtools library to obtain four key statistics on the quality of read mapping results: the total number of mismatches, the total number of mapped bases, the total number of mapped reads, and the total number of unmapped reads.
 
 
 ```bash
 cd reproducibleEvaluation/read_mapping_analysis
 python run_minimap.py ref_path fasta_path sam_out_path
 #run minimap
-#ref_path is the path of the reference (references available under: reproducibleEvaluation/reference_files)
-#fasta_path is the path to basecalled read (gnenerated baseccalled reads available under: reproducibleEvaluation/basecalled_reads)
+#ref_path is the path of the reference (references available under reproducibleEvaluation/reference_files)
+#fasta_path is the path to basecalled read (generated basecalled reads available under: reproducibleEvaluation/basecalled_reads)
 #sam_out_path path to store files needed for sam tools
 ```
-Run samtool on generated files 
+Run samtool on generated files. 
 
 ```bash
 cd reproducibleEvaluation/read_mapping_analysis
@@ -278,47 +278,47 @@ bash download_human_samtools_results.sh
 ## K-mer Counting Analysis
 We analyze the occurrence of k-mer (i.e., substrings of length k) in a given sequence of basecalled reads and their assemblies. We use BBMap to collect the number of unique k-mers and the frequency of each unique k-mer in a given sequence. During our analysis, we vary the value of k from 15 to 31. Based on our empirical analysis, we set the k value for our evaluated bacterial species to 15, where we observe distinct peaks of unique k-mers.
 
-To collect distinct k-mers (as sequences) and the number of times each distinct k-mer appears, run the following on generted reads and assembly with proper paths for BBMap, Reads/Assembly, and output path
+To collect distinct k-mers (as sequences) and the number of times each distinct k-mer appears, run the following on generated reads and assembly with proper paths for BBMap, Reads/Assembly, and output path
 
 ```bash
 run_k-mer_unique_reads.py
 run_k-mer_unique_assembly.py
 ```
 
-To generate k-mer frequency histogram (used to find peaks and threashold to generate over and under represented k-mers), run the following on generted reads and assembly with proper paths for BBMap, Reads/Assembly, and output path
+To generate a k-mer frequency histogram (used to find peaks and threshold to generate over and under-represented k-mers), run the following on generated reads and assembly with proper paths for BBMap, Reads/Assembly, and output path
 
 ```bash
 run_hist_compare_reads.py
 run_hist_compare_assembly.py
 ```
 
- Generate the k-mer list that appear less than a certain threshold:
+ Generate the k-mer list that appears less than a certain threshold:
 
 ```bash
-run_under.sh <threshold> <k-mer-file for read/assemyl>
+run_under.sh <threshold> <k-mer-file for read/assembly>
 For example:
 run_under.sh 10 k-mer_compare_15/basecalled_read/bonito/serratia_marcescens_17.out # setting threshold=10 for serratia_marcescens_17 reads generated using bonito basecaller
 ```
- Generate the k-mer list that appear more than a certain threshold:
+ Generate the k-mer list that appears more than a certain threshold:
 
 ```bash
-run_over.sh <threshold> <k-mer-file for read/assemyl>
+run_over.sh <threshold> <k-mer-file for read/assembly>
 For example:
 run_over.sh 10 k-mer_compare_15/basecalled_read/bonito/serratia_marcescens_17.out # setting threshold=10 for serratia_marcescens_17 reads generated using bonito basecaller
 ```
 
-Find intersection of under and over represented k-mers between reads and assembly using the following script:
+Find the intersection of under and over-represented k-mers between reads and assembly using the following script:
 
 ```bash
 run_intersect_k-mers.sh A.over B.over common_kmer.over
 # A from read set, B from assembly for the same dataset and basecalling
 ```
-Run the above script for both .over and .under for each dataset and basecalling pairs. Then count the number of lines in common_k_mer.over. Use the common count, to take its ratio with either of the read set and assembly for the over/under k-mers from same basecalling+dataset.
+Run the above script for both .over and .under for each dataset and basecalling pairs. Then count the number of lines in common_k_mer.over. Use the common count to take its ratio with either read set and assembly for the over/under k-mers from the same basecalling+dataset.
 
 ## ONNX
 We provide the generated ONNX (Open Neural NetworkExchange) file for RUBICALL_MP.
 
-We estimate the performance on AIE-ML by calculating bit operations (BOPs) that measures the number of bitwise operations in a given network from its ONNX representation and take into account the total number of supported operations per datatype on AIE-ML.
+We estimate the performance of AIE-ML by calculating bit operations (BOPs) that measure the number of bitwise operations in a given network from its ONNX representation and consider the total number of supported operations per datatype on AIE-ML.
 
 ## Figures
 You will find the high-quality figures that we included in the paper. We also provide scripts to generate these figures.

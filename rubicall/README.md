@@ -21,6 +21,9 @@ We use various tools to process and analyze the data we generate using each tool
 * [mosdepth v0.3.2](https://github.com/brentp/mosdepth/releases/tag/v0.3.2)
 * [QUAST v5.0.2](https://github.com/ablab/quast/releases/tag/quast_5.0.2)
 * [PBSIM2 v2.0.1 -- via conda](https://anaconda.org/bioconda/pbsim2/2.0.1/download/linux-64/pbsim2-2.0.1-h9f5acd7_1.tar.bz2)
+* [Inspector v1.2](https://github.com/ChongLab/Inspector)
+* [BBMap v39.03](https://sourceforge.net/projects/bbmap/)
+* [SeqKit  v2.5.1](https://github.com/shenwei356/seqkit)
 
 We suggest using conda to install these tools with their specified versions as almost all of them are included in the conda repository.
 
@@ -35,7 +38,9 @@ $ rubicon download --training # will download ONT dataset
 ```
 Evaluated specie reads can be downloaded using `rubicon download --organism` . The datasets will be downloaed under `~/rubicon/rubicon/data/organism`
 
-Evaluated reference files can be downloaded from https://bridges.monash.edu/articles/dataset/Reference_genomes/7676135
+Evaluated reference files can be downloaded from https://bridges.monash.edu/articles/dataset/Reference_genomes/10198815
+
+For the human genome, we download reads from https://labs.epi2me.io/gm24385_2020.11/, while the reference genome is available at https://github.com/marbl/HG002
 
 We also provide references under `reproducibleEvaluation/reference_files`
 
@@ -55,6 +60,8 @@ $ bash download_rubiconqabas.sh
 $ bash download_staticquant.sh
 $ bash download_rubicallmp.sh
 $ bash download_rubiconnoskipfp.sh
+$ bash download_dorado.sh
+$ bash download_sacall.sh
 # Causalcall can be downloaded from their official git repo https://github.com/scutbioinformatic/causalcall
 ```
 
@@ -130,7 +137,9 @@ $ bash download_reads_bonito.sh
 $ bash download_reads_crf-fast.sh
 $ bash download_reads_crf-sup.sh
 $ bash download_reads_causalcall.sh
+$ bash download_reads_dorado.sh
 $ bash download_reads_rubicall.sh
+$ bash download_reads_sacall.sh
 ```
 
 Or perform basecalling on a set of raw reads. Make sure models are available under `reproducibleEvaluation/models` and evaluated organisms unders `../../data/organism`
@@ -157,6 +166,8 @@ python run_basecalling.py specie_dir model_dir modeltype
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`rubiconskiptrim` for model after RUBICALL-MP
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`rubiconnoskipfp` for model after RUBICALL-FP
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sacall` for bonito_ctc model
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`staticquant` for model after statically quant models
 
@@ -187,6 +198,7 @@ $ bash download_reference.sh
 ```
 
 Appropriate reference files are under `reproducibleEvaluation/reference_files`
+Human reference genome is available at https://github.com/marbl/HG002
 
 ```bash
 #run the analysis using the below script
@@ -215,6 +227,13 @@ Run dnadiff and quast:
 cd  reproducibleEvaluation/denovo_assembly/analysis
 #Runs dnadiff and quast to generate all the results regarding the assembly and overlap statistics. 
 ./run.sh
+```
+
+Similarly for human genome follow the below instructions. Please make sure run_dnadiff and run_quast, points to proper location:
+
+```bash
+cd reproducibleEvaluation/denovo_assembly/human_analysis
+./run_assembly.sh 
 ```
 
 It outputs the result at the end to the standard output.
@@ -247,6 +266,54 @@ Read stats for mismatches, bases mapped, reads mapped, and reads unmapped
 cd reproducibleEvaluation/read_mapping_analysis
 python read_stats.py
 ```
+
+Download human genome analysis:
+
+```bash
+cd reproducibleEvaluation/read_mapping_analysis
+bash download_human_samtools_results.sh
+```
+
+
+## K-mer Counting Analysis
+We analyze the occurrence of k-mer (i.e., substrings of length k) in a given sequence of basecalled reads and their assemblies. We use BBMap to collect the number of unique k-mers and the frequency of each unique k-mer in a given sequence. During our analysis, we vary the value of k from 15 to 31. Based on our empirical analysis, we set the k value for our evaluated bacterial species to 15, where we observe distinct peaks of unique k-mers.
+
+To collect distinct k-mers (as sequences) and the number of times each distinct k-mer appears, run the following on generted reads and assembly with proper paths for BBMap, Reads/Assembly, and output path
+
+```bash
+run_k-mer_unique_reads.py
+run_k-mer_unique_assembly.py
+```
+
+To generate k-mer frequency histogram (used to find peaks and threashold to generate over and under represented k-mers), run the following on generted reads and assembly with proper paths for BBMap, Reads/Assembly, and output path
+
+```bash
+run_hist_compare_reads.py
+run_hist_compare_assembly.py
+```
+
+ Generate the k-mer list that appear less than a certain threshold:
+
+```bash
+run_under.sh <threshold> <k-mer-file for read/assemyl>
+For example:
+run_under.sh 10 k-mer_compare_15/basecalled_read/bonito/serratia_marcescens_17.out # setting threshold=10 for serratia_marcescens_17 reads generated using bonito basecaller
+```
+ Generate the k-mer list that appear more than a certain threshold:
+
+```bash
+run_over.sh <threshold> <k-mer-file for read/assemyl>
+For example:
+run_over.sh 10 k-mer_compare_15/basecalled_read/bonito/serratia_marcescens_17.out # setting threshold=10 for serratia_marcescens_17 reads generated using bonito basecaller
+```
+
+Find intersection of under and over represented k-mers between reads and assembly using the following script:
+
+```bash
+run_intersect_k-mers.sh A.over B.over common_kmer.over
+# A from read set, B from assembly for the same dataset and basecalling
+```
+Run the above script for both .over and .under for each dataset and basecalling pairs. Then count the number of lines in common_k_mer.over. Use the common count, to take its ratio with either of the read set and assembly for the over/under k-mers from same basecalling+dataset.
 
 ## ONNX
 We provide the generated ONNX (Open Neural NetworkExchange) file for RUBICALL_MP.

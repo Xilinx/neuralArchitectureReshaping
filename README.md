@@ -222,10 +222,11 @@ rubicon
 
 # Citation
 ```bibtex
-@article{singh2022framework,
-  title={A Framework for Designing Efficient Deep Learning-Based Genomic Basecallers},
+@article{singh2024rubicon,
+  title={RUBICON: a framework for designing efficient deep learning-based genomic basecallers},
   author={Singh, Gagandeep and Alser, Mohammed and Denolf, Kristof and Firtina, Can and Khodamoradi, Alireza and Cavlak, Meryem Banu and Corporaal, Henk and Mutlu, Onur},
-  year={2022}
+  journal={Genome biology},
+  year={2024}
 }
 ```
 

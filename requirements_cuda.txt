@@ -14,7 +14,7 @@ koi-cuda111==0.0.5
 crf-beam==0.0.1a0
 wheel==0.41.1
 numpy==1.20.3
-tqdm==4.66.1
+tqdm==4.66.3
 brevitas==0.8.0
 cloudpickle==2.2.1
 json_tricks==3.16.1
